@@ -1,0 +1,725 @@
+{
+  "active": false,
+  "connections": {
+    "Get Content": {
+      "main": [
+        [
+          {
+            "node": "Captions Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Account IDs": {
+      "main": [
+        [
+          {
+            "node": "Upload Video to Blotato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Video to Blotato": {
+      "main": [
+        [
+          {
+            "node": "Post to Instagram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to YouTube",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to TikTok",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Facebook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Threads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to LinkedIn",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Pinterest",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to X (Twitter)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to BlueSky",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Instagram": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to YouTube": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Post to TikTok": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Post to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Post to X (Twitter)": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Post to Threads": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Post to LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Post to Pinterest": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Captions Agent": {
+      "main": [
+        [
+          {
+            "node": "Account IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to BlueSky": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 8
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-26T08:08:18.874Z",
+  "id": "rk9MPXFoCsygufoM",
+  "isArchived": true,
+  "meta": null,
+  "name": "Social_Auto_Publish_Template",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FTkLtCefG7Zf3-E7R7yZyRlYXOJaOJsVmYUii1Mnzlk/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Topics",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FTkLtCefG7Zf3-E7R7yZyRlYXOJaOJsVmYUii1Mnzlk/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Posted?",
+              "lookupValue": "false"
+            },
+            {
+              "lookupColumn": "status",
+              "lookupValue": "finished"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1360,
+        688
+      ],
+      "id": "b8e73599-48fb-4dfb-82d0-a52f5a17be44",
+      "name": "Get Content",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vbI81OtCL2gEYQiS",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1536,
+        688
+      ],
+      "id": "8ee05a64-c49b-44ad-97d8-b2cd7be00241",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.youtube_id }}\",\n    \"target\": {\n      \"targetType\": \"youtube\",\n      \"title\": \"{{ $('Captions Agent').item.json.message.content['YouTube Shorts'].replace(/\\n/g, '\\\\n') }}\",\n      \"privacyStatus\": \"unlisted\",\n      \"shouldNotifySubscribers\": \"false\"\n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content['YouTube Shorts'] }}\",\n      \"platform\": \"youtube\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "45d19671-18b7-473b-b060-e0f27c26b4af",
+      "name": "Post to YouTube",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        192
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $node[\"Account IDs\"].json.instagram_id }}\",\n    \"target\": { \"targetType\": \"instagram\" },\n    \"content\": {\n      \"text\": \"{{ $node[\"Captions Agent\"].json.message.content[\"Instagram Reels\"].replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"instagram\",\n      \"mediaUrls\": [ \"{{ $json.url }}\" ]\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "37fae48c-d5d6-4c3f-b93f-99b97dc1c155",
+      "name": "Post to Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.tiktok_id }}\",\n    \"target\": {\n      \"targetType\": \"tiktok\",\n      \"isYourBrand\": \"false\", \n      \"disabledDuet\": \"false\",\n      \"privacyLevel\": \"PUBLIC_TO_EVERYONE\",\n      \"isAiGenerated\": \"true\",\n      \"disabledStitch\": \"false\",\n      \"disabledComments\": \"false\",\n      \"isBrandedContent\": \"false\"\n      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content.TikTok.replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"tiktok\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "f3e1b850-2773-42b0-8a8d-e3b3515fe7b0",
+      "name": "Post to TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        368
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.facebook_id }}\",\n    \"target\": {\n      \"targetType\": \"facebook\",\n      \"pageId\": \"{{ $('Account IDs').item.json.facebook_page_id }}\"\n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content['Facebook Reels'].replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"facebook\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "c1214d83-b998-42c0-86e6-22fcd7477a36",
+      "name": "Post to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        544
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.twitter_id }}\",\n    \"target\": {\n      \"targetType\": \"twitter\"\n      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content['X Shorts'].replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"twitter\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "72aceb3c-76a8-4dda-a625-63bf1dc48350",
+      "name": "Post to X (Twitter)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        704
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.threads_id }}\",\n    \"target\": {\n      \"targetType\": \"threads\"\n      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content.Threads.replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"threads\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "5f13e6d6-3d15-4788-b4ec-54ba230d3b5d",
+      "name": "Post to Threads",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        880
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.linkedin_id }}\",\n    \"target\": {\n      \"targetType\": \"linkedin\"\n      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content['LinkedIn Shorts'].replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"linkedin\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "5bcab884-8cb6-4a33-8490-9473290908de",
+      "name": "Post to LinkedIn",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        1072
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.pinterest_id }}\",\n    \"target\": {\n      \"targetType\": \"pinterest\",\n      \"boardId\": \"{{ $('Account IDs').item.json.pinterest_board_id }}\"      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content['Pinterest Video Pins'].replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"pinterest\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n\n",
+        "options": {}
+      },
+      "id": "3bf9c111-1732-4d9a-9309-70f24e230ab4",
+      "name": "Post to Pinterest",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        1248
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"api_key\": \"<Blotato API Key>\",\n  \"instagram_id\": \"<account id>\",\n  \"youtube_id\": \"<account id>\",\n  \"tiktok_id\": \"<account id>\",\n  \"facebook_id\": \"<account id>\",\n  \"facebook_page_id\": \"<page id>\",\n  \"threads_id\": \"<account id>\",\n  \"twitter_id\": \"<account id>\",\n  \"linkedin_id\": \"<account id>\",\n  \"pinterest_id\": \"<account id>\",\n  \"pinterest_board_id\": \"<account id>\",\n  \"bluesky_id\": \"<account id>\"\n}",
+        "options": {}
+      },
+      "id": "a27b5873-a542-4157-a88a-f0c94abf5af5",
+      "name": "Account IDs",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -864,
+        688
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/media",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $('Get Content').item.json.video }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4d98ac85-023d-4de0-a875-19e65ac27f6c",
+      "name": "Upload Video to Blotato",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -656,
+        688
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 9
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        512,
+        592
+      ],
+      "id": "faf1c145-03cc-498c-a650-c01f1013861d",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FTkLtCefG7Zf3-E7R7yZyRlYXOJaOJsVmYUii1Mnzlk/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Topics",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FTkLtCefG7Zf3-E7R7yZyRlYXOJaOJsVmYUii1Mnzlk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $('Get Content').item.json.Topic }}",
+            "Posted?": "true"
+          },
+          "matchingColumns": [
+            "Topic"
+          ],
+          "schema": [
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "video",
+              "displayName": "video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Posted?",
+              "displayName": "Posted?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        752,
+        704
+      ],
+      "id": "421d6a63-7e9d-4931-ab7c-9374df02dfc3",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vbI81OtCL2gEYQiS",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert social media copywriter.\nWrite a high-performing caption for the topic: “{{ $json.Topic }}”.\nThe video features ultra-realistic, AI-generated ASMR content where glass objects are being sliced with a knife.\nMake it scroll-stopping, short, and engaging.\n\nGenerate a short, non-generic caption for each platform. Captions must follow exact max-lengths and these best practices:\n\n• X Shorts (max 280 chars)  \n  – Hook first  \n  – 1–2 hashtags  \n  – Add GIF/video or emoji sparingly  \n\n• LinkedIn Shorts (max 3000 chars)  \n  – Start with value (tip/stat)  \n  – Use short lines or bullets  \n  – Tag people/companies  \n  – End with a clear CTA  \n\n• Facebook Reels (max 2200 chars)  \n  – First 125 chars must punch  \n  – Use line breaks or emojis  \n  – Include CTA within first 125  \n  – 2–3 relevant hashtags  \n\n• TikTok (max 4000 chars)  \n  – Lead with CTA or question  \n  – 3–5 trending hashtags  \n  – Tag collaborators  \n  – Sprinkle emojis for tone  \n\n• Instagram Reels (max 2200 chars)  \n  – First 125 chars show before “more”  \n  – Use emojis/line breaks  \n  – Up to 10 hashtags at end  \n  – Tag accounts and location  \n\n• Threads (max 500 chars)  \n  – Keep it concise  \n  – 1–2 hashtags  \n  – Use emoji to set tone  \n  – Ask a quick question or poll  \n\n• Pinterest Video Pins (max 800 chars)  \n  – Top keywords in first 40 chars  \n  – Clear CTA (“Learn more”)  \n  – Natural, conversational tone  \n  – Use line breaks to highlight points  \n\n• Bluesky (max 300 chars)  \n  – Plain text with 1–2 hashtags  \n  – Link or key info in first 100 chars  \n  – Add an emoji for mood  \n\n• YouTube Shorts \n  – 100 chars max for the caption\n  – Include 2–3 hashtags (#Shorts, topic)  \n\nOutput only valid JSON. \n\nExample output:\n\n{\n  \"X Shorts\":\"…\",\n  \"LinkedIn Shorts\":\"…\",\n  \"Facebook Reels\":\"…\",\n  \"TikTok\":\"…\",\n  \"Instagram Reels\":\"…\",\n  \"Threads\":\"…\",\n  \"Pinterest Video Pins\":\"…\",\n  \"Bluesky\":\"…\",\n  \"YouTube Shorts\":\"…\"\n}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -1184,
+        688
+      ],
+      "id": "b33db479-2a79-4e1a-9b80-ef77a4d97646",
+      "name": "Captions Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://backend.blotato.com/v2/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "blotato-api-key",
+              "value": "={{ $node[\"Account IDs\"].json.api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "= {\n  \"post\": {\n    \"accountId\": \"{{ $('Account IDs').item.json.bluesky_id }}\",\n    \"target\": {\n      \"targetType\": \"bluesky\"\n      \n    },\n    \"content\": {\n      \"text\": \"{{ $('Captions Agent').item.json.message.content.Bluesky.replace(/\\n/g, '\\\\n') }}\",\n      \"platform\": \"bluesky\",\n      \"mediaUrls\": [\n        \"{{ $json.url }}\"\n      ]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "id": "8c8b88fe-6659-4553-990f-485ecacdf839",
+      "name": "Post to BlueSky",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        0,
+        1424
+      ],
+      "typeVersion": 4.2
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-26T08:08:18.891Z",
+      "updatedAt": "2025-08-26T08:08:18.891Z",
+      "role": "workflow:owner",
+      "workflowId": "rk9MPXFoCsygufoM",
+      "projectId": "oOBE5XeUJ9gPMiIT"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-29T20:37:54.000Z",
+  "versionId": "4d649d58-68ba-4c92-b400-0ab9c4f12473"
+}
