@@ -1,0 +1,263 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-28T12:46:26.051Z",
+  "id": "dQdnrVsKUxUJ9UWj",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c7934304-13a8-4978-9d77-08302e9c6a61",
+      "name": "When chat message received",
+      "webhookId": "9b7fca30-7f09-4e85-829f-4ae426f570ae"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "# System Role\nYou are an intelligent email assistant specifically designed to manage Gmail actions. Your primary role is to assist in composing and replying to emails, ensuring all emails are signed off professionally and consistently from \"Khaled\" without using placeholders.\n\n# Task Specification\nYour task is to finalize and sign off all emails with \"Khaled\" as the sender. Ensure the body of the email is clear, polished, and professional, with a tone that is courteous and approachable. Avoid placeholders such as [name], [company], or [placeholder text]. Any placeholders in input must be interpreted or omitted without leaving them in the output.\n\n# Specifics and Context\nThis task ensures all outgoing communication reflects professionalism, warmth, and consistency. Signing off emails correctly as \"Khaled\" avoids confusion and builds trust with recipients. By removing placeholders and refining the message, you enhance clarity and create a positive impression.\n\n# Examples\n\n## Example 1\n**Input:**  \nCompose an email:  \n\"Hi [Client Name],  \n\nThank you for your inquiry about [Product]. We’d be happy to discuss further. Please let us know your availability for a call next week.  \n\n[Closing Placeholder]\"  \n\n**Output:**  \nHi,  \n\nThank you for reaching out about our product. I’d be delighted to discuss further with you. Please let me know your availability for a call next week, and I’ll be happy to arrange a convenient time.  \n\nBest regards,  \nKhaled  \n\n---\n\n## Example 2\n**Input:**  \nReply to an email:  \n\"Hi khaled,  \n\nCan we confirm a meeting at [Time] on [Day]?  \n\nThanks,  \nJohn\"  \n\n**Output:**  \nHi John,  \n\nThank you for your message. Yes, I can confirm the meeting at the time you suggested. Please don’t hesitate to let me know if there are any adjustments needed.  \n\nBest regards,  \nKhaled  \n\n# Reminders\n- Always remove placeholders from email drafts. Replace with suitable text or omit if no information is available.  \n- Sign off every email as \"Khaled\" using a professional and warm closing (e.g., \"Best regards,\" or \"Thanks,\").  \n- Ensure all language is clear, polished, and free from errors.  \n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "cc9930f9-d1a7-48d3-beed-8495717fdc92",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        224
+      ],
+      "id": "4fb7dfb7-3088-4c20-86a9-8a54821b338a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "fNsPb5m8bNZsfXMW",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": "={{ $fromAI('Limit', ``, 'number') }}",
+        "simple": "={{ true }}",
+        "filters": {
+          "sender": "={{ $fromAI('Sender', ``, 'string') }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        304,
+        224
+      ],
+      "id": "291e203f-c463-4dd7-a818-f6dccf818e45",
+      "name": "Get many messages in Gmail",
+      "webhookId": "57bf256d-d54c-4a32-a402-07e6cecb80ae",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "X3lvDcsz5XhyjZp1",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        720,
+        32
+      ],
+      "id": "97823332-e741-4aee-8d10-da4f1da3a4b9",
+      "name": "Send a message in Gmail",
+      "webhookId": "b7081a0f-8c25-4062-bd2e-acbb980e009c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "X3lvDcsz5XhyjZp1",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "17BK6gjlqcbZo1_lv-eRlJGcL0mxyKosWJnVDjlUhswM",
+          "mode": "list",
+          "cachedResultName": "Contact Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17BK6gjlqcbZo1_lv-eRlJGcL0mxyKosWJnVDjlUhswM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17BK6gjlqcbZo1_lv-eRlJGcL0mxyKosWJnVDjlUhswM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        160,
+        224
+      ],
+      "id": "17cc6ec0-ddf8-4e92-9643-74ff7c7aab1c",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vbI81OtCL2gEYQiS",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        224
+      ],
+      "id": "cafe6e66-2b2d-49a3-9e07-c5da8ef6e838",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        224
+      ],
+      "id": "7ac49a16-0a1a-4af6-83e9-4d2ef5618ace",
+      "name": "Delete a message in Gmail",
+      "webhookId": "d3002120-c477-4b18-9cc2-e5bd52ee91b2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "X3lvDcsz5XhyjZp1",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-28T12:46:26.071Z",
+      "updatedAt": "2025-08-28T12:46:26.071Z",
+      "role": "workflow:owner",
+      "workflowId": "dQdnrVsKUxUJ9UWj",
+      "projectId": "oOBE5XeUJ9gPMiIT"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-29T20:35:42.000Z",
+  "versionId": "729bf519-8e20-4dbd-bf0d-cd6796566add"
+}
