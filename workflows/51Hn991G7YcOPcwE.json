@@ -213,7 +213,7 @@
   },
   "createdAt": "2025-08-26T07:47:11.359Z",
   "id": "51Hn991G7YcOPcwE",
-  "isArchived": false,
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -806,25 +806,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1-F3ZioIs3oWOKMyDPMuquaH-qiuaZs6qdZXP-yNeRbs",
+          "value": "1Vgloi0-mSsAr2Erkr3bNiVw47zgGWYOgAj9otd8WSZw",
           "mode": "list",
-          "cachedResultName": "AI Posts Content Machine",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-F3ZioIs3oWOKMyDPMuquaH-qiuaZs6qdZXP-yNeRbs/edit?usp=drivesdk"
+          "cachedResultName": "Past LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Vgloi0-mSsAr2Erkr3bNiVw47zgGWYOgAj9otd8WSZw/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-F3ZioIs3oWOKMyDPMuquaH-qiuaZs6qdZXP-yNeRbs/edit#gid=0"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "status",
-              "lookupValue": "ready"
-            }
-          ]
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Vgloi0-mSsAr2Erkr3bNiVw47zgGWYOgAj9otd8WSZw/edit#gid=0"
         },
         "options": {}
       },
@@ -848,7 +840,7 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "={{ $json.image }}",
+          "value": "={{ $json[\"image link\"] }}",
           "mode": "url"
         },
         "options": {}
@@ -871,7 +863,7 @@
     {
       "parameters": {
         "person": "gE2RC2sLZ_",
-        "text": "={{ $json.text }}",
+        "text": "={{ $json['Past LinkedIn Posts'] }}",
         "shareMediaCategory": "IMAGE",
         "additionalFields": {}
       },
@@ -1015,6 +1007,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-29T20:36:24.000Z",
-  "versionId": "b2a9b069-8240-44ec-b536-328783d06bf9"
+  "updatedAt": "2025-08-30T22:04:29.000Z",
+  "versionId": "c577cad9-eec5-4b0e-a5b4-2de9183de09f"
 }
