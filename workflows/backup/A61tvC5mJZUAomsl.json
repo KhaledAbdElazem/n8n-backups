@@ -159,7 +159,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -249,6 +249,17 @@
           },
           {
             "node": "tag?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -826,6 +837,20 @@
         912
       ],
       "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1360,
+        352
+      ],
+      "id": "d0410574-9611-4fac-a16d-cd90fee3f0e1",
+      "name": "Wait",
+      "webhookId": "b749efde-dd35-403c-89a7-0e0b00a282a4"
     }
   ],
   "pinData": {},
@@ -851,6 +876,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-29T20:35:16.000Z",
-  "versionId": "f585f3fa-691d-4231-8fbe-9a440f2d3b86"
+  "updatedAt": "2025-08-30T22:12:20.000Z",
+  "versionId": "7db97f09-753c-47a5-be13-60b8b8780428"
 }
