@@ -122,7 +122,13 @@
     },
     "Google Gemini Chat Model": {
       "ai_languageModel": [
-        []
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
       ]
     },
     "Message a model": {
@@ -149,19 +155,13 @@
     },
     "OpenRouter Chat Model": {
       "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
   "createdAt": "2025-08-26T08:20:59.286Z",
   "id": "DXVTMigXC1i8L2qb",
-  "isArchived": false,
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -246,7 +246,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return items.flatMap(item => {\n  const rawText = item.json?.content?.parts?.[0]?.text || \"No message content found\";\n  const role = item.json?.content?.role || null;\n  const finishReason = item.json?.finishReason || null;\n\n  // تقسيم النص للبوستات (بيعتمد على regex عشان يجيب 1. , 2. ... )\n  const posts = rawText\n    .split(/\\n\\s*\\d+\\.\\s/) // يقسم عند \"1. \" أو \"2. \" إلخ\n    .map(p => p.trim())\n    .filter(p => p.length > 0);\n\n  // رجع كل بوست كـ item مستقل\n  return posts.map((post, index) => ({\n    json: {\n      index: index + 1,\n      role: role,\n      finish_reason: finishReason,\n      content: post,\n    },\n  }));\n});\n"
+        "jsCode": "return items.map(item => {\n  const choice = item.json?.choices?.[0];\n\n  const message = choice?.message?.content || \"No message content found\";\n\n  return {\n    json: {\n      index: choice?.index ?? null,\n      role: choice?.message?.role ?? null,\n      finish_reason: choice?.finish_reason ?? null,\n      content: message,\n    },\n  };\n});\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -525,8 +525,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        1184,
-        256
+        1296,
+        144
       ],
       "id": "3bc7024b-6191-4ef1-aeb8-82fc85d7e962",
       "name": "Google Gemini Chat Model",
@@ -574,9 +574,9 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "models/gemini-1.5-flash",
+          "value": "models/gemini-2.5-flash",
           "mode": "list",
-          "cachedResultName": "models/gemini-1.5-flash"
+          "cachedResultName": "models/gemini-2.5-flash"
         },
         "messages": {
           "values": [
@@ -614,8 +614,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        1280,
-        144
+        1072,
+        224
       ],
       "id": "9f3e43b6-9250-4aa4-9e22-08d850b8f7f5",
       "name": "OpenRouter Chat Model",
@@ -628,100 +628,22 @@
     }
   ],
   "pinData": {
-    "Schedule Trigger": [
-      {
-        "json": {
-          "timestamp": "2025-08-29T08:19:42.883-04:00",
-          "Readable date": "August 29th 2025, 8:19:42 am",
-          "Readable time": "8:19:42 am",
-          "Day of week": "Friday",
-          "Year": "2025",
-          "Month": "August",
-          "Day of month": "29",
-          "Hour": "08",
-          "Minute": "19",
-          "Second": "42",
-          "Timezone": "America/New_York (UTC-04:00)"
-        }
-      }
-    ],
-    "Code": [
-      {
-        "json": {
-          "index": 1,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "I cannot provide *five completely new* stories about AI societal problems as news is constantly evolving and I don't have access to a real-time, constantly updating news feed.  However, I can offer five angles on *emerging or recently highlighted* problems, reflecting current concerns:"
-        }
-      },
-      {
-        "json": {
-          "index": 2,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "**AI-driven job displacement anxieties escalating beyond blue-collar work:**  While initial fears focused on factory workers, the narrative is shifting.  Stories now explore the impact on creative professions (graphic design, writing, programming – even legal and medical fields).  The anxiety isn't just about job loss, but the speed of change and the perceived lack of retraining opportunities.  *Look for articles focusing on specific professions and the anxieties within those groups.*"
-        }
-      },
-      {
-        "json": {
-          "index": 3,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "**The widening digital divide exacerbating social inequalities:**  Access to and understanding of AI technology is unevenly distributed. This creates a new form of societal stratification, where those with access to advanced AI tools gain advantages in education, employment, and even healthcare, leaving others behind. *Look for research focusing on the impact of AI on already marginalized communities.*"
-        }
-      },
-      {
-        "json": {
-          "index": 4,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "**Erosion of trust and the spread of misinformation amplified by AI:** Deepfakes and sophisticated AI-generated content are making it increasingly difficult to distinguish truth from falsehood. This fuels political polarization, erodes trust in institutions, and hinders informed decision-making. *Look for articles discussing specific instances of this impacting elections or public health discourse.*"
-        }
-      },
-      {
-        "json": {
-          "index": 5,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "**The ethical dilemmas of AI in relationships:** AI companions and dating apps utilizing advanced algorithms raise complex questions about authenticity, emotional intimacy, and the nature of human connection.  Concerns exist about the potential for exploitation, addiction, and the blurring of boundaries between human and machine relationships. *Search for articles discussing the ethical implications of AI companions and their impact on mental health.*"
-        }
-      },
-      {
-        "json": {
-          "index": 6,
-          "role": "model",
-          "finish_reason": "STOP",
-          "content": "**AI bias perpetuating and amplifying existing societal prejudices:**  AI systems are trained on data, and if that data reflects existing biases (racial, gender, etc.), the AI will perpetuate and even amplify those biases in its outputs. This leads to unfair or discriminatory outcomes in areas like loan applications, hiring processes, and even criminal justice.  *Look for studies examining bias in specific AI applications and the efforts to mitigate it.*\n\n\nThese are not individual news stories but rather themes currently playing out in the news.  You can use these points as search terms to find specific, recent news articles addressing these issues."
-        }
-      }
-    ],
-    "Code2": [
-      {
-        "json": {
-          "combinedContent": "I cannot provide *five completely new* stories about AI societal problems as news is constantly evolving and I don't have access to a real-time, constantly updating news feed.  However, I can offer five angles on *emerging or recently highlighted* problems, reflecting current concerns:\n\n**AI-driven job displacement anxieties escalating beyond blue-collar work:**  While initial fears focused on factory workers, the narrative is shifting.  Stories now explore the impact on creative professions (graphic design, writing, programming – even legal and medical fields).  The anxiety isn't just about job loss, but the speed of change and the perceived lack of retraining opportunities.  *Look for articles focusing on specific professions and the anxieties within those groups.*\n\n**The widening digital divide exacerbating social inequalities:**  Access to and understanding of AI technology is unevenly distributed. This creates a new form of societal stratification, where those with access to advanced AI tools gain advantages in education, employment, and even healthcare, leaving others behind. *Look for research focusing on the impact of AI on already marginalized communities.*\n\n**Erosion of trust and the spread of misinformation amplified by AI:** Deepfakes and sophisticated AI-generated content are making it increasingly difficult to distinguish truth from falsehood. This fuels political polarization, erodes trust in institutions, and hinders informed decision-making. *Look for articles discussing specific instances of this impacting elections or public health discourse.*\n\n**The ethical dilemmas of AI in relationships:** AI companions and dating apps utilizing advanced algorithms raise complex questions about authenticity, emotional intimacy, and the nature of human connection.  Concerns exist about the potential for exploitation, addiction, and the blurring of boundaries between human and machine relationships. *Search for articles discussing the ethical implications of AI companions and their impact on mental health.*\n\n**AI bias perpetuating and amplifying existing societal prejudices:**  AI systems are trained on data, and if that data reflects existing biases (racial, gender, etc.), the AI will perpetuate and even amplify those biases in its outputs. This leads to unfair or discriminatory outcomes in areas like loan applications, hiring processes, and even criminal justice.  *Look for studies examining bias in specific AI applications and the efforts to mitigate it.*\n\n\nThese are not individual news stories but rather themes currently playing out in the news.  You can use these points as search terms to find specific, recent news articles addressing these issues."
-        }
-      }
-    ],
-    "AI Agent": [
-      {
-        "json": {
-          "output": "Okay, based on the provided topics and the fact that there are no recent posts yet, I recommend focusing on **AI bias perpetuating and amplifying existing societal prejudices.** This is a consistently relevant and impactful topic that sparks important conversations.\n\nHere's the LinkedIn post:\n\n---\n\nIs AI truly objective? 🤔 The uncomfortable truth is that AI systems are trained on data, and if that data reflects existing societal biases, the AI will, without intervention, perpetuate and amplify those prejudices.\n\nWe're seeing this play out in critical areas like loan applications, hiring processes, and even criminal justice. The results? Unfair and discriminatory outcomes that disproportionately affect already marginalized communities.\n\nIt's not enough to simply develop AI; we need to actively audit and mitigate bias in these systems. This requires diverse datasets, transparent algorithms, and a commitment to ethical development practices.\n\nWhat steps do you think are most crucial in ensuring AI fairness? Share your thoughts in the comments! 👇 #AIethics #Bias #ArtificialIntelligence #Fairness #TechResponsibility\n\n---\n\nHere's the image prompt:\n\n\"A close-up image showing a diverse group of hands interacting with a glowing, futuristic AI interface. The interface displays a complex algorithm visually representing data, with subtle visual cues highlighting potential bias or inequality. The overall tone is thoughtful and concerned, yet hopeful for a more equitable future through responsible AI development.\"\n"
-        }
-      }
-    ],
     "Message a model1": [
       {
         "json": {
           "content": {
             "parts": [
               {
-                "text": "I cannot provide *five completely new* stories about AI societal problems as news is constantly evolving and I don't have access to a real-time, constantly updating news feed.  However, I can offer five angles on *emerging or recently highlighted* problems, reflecting current concerns:\n\n1. **AI-driven job displacement anxieties escalating beyond blue-collar work:**  While initial fears focused on factory workers, the narrative is shifting.  Stories now explore the impact on creative professions (graphic design, writing, programming – even legal and medical fields).  The anxiety isn't just about job loss, but the speed of change and the perceived lack of retraining opportunities.  *Look for articles focusing on specific professions and the anxieties within those groups.*\n\n2. **The widening digital divide exacerbating social inequalities:**  Access to and understanding of AI technology is unevenly distributed. This creates a new form of societal stratification, where those with access to advanced AI tools gain advantages in education, employment, and even healthcare, leaving others behind. *Look for research focusing on the impact of AI on already marginalized communities.*\n\n3. **Erosion of trust and the spread of misinformation amplified by AI:** Deepfakes and sophisticated AI-generated content are making it increasingly difficult to distinguish truth from falsehood. This fuels political polarization, erodes trust in institutions, and hinders informed decision-making. *Look for articles discussing specific instances of this impacting elections or public health discourse.*\n\n4. **The ethical dilemmas of AI in relationships:** AI companions and dating apps utilizing advanced algorithms raise complex questions about authenticity, emotional intimacy, and the nature of human connection.  Concerns exist about the potential for exploitation, addiction, and the blurring of boundaries between human and machine relationships. *Search for articles discussing the ethical implications of AI companions and their impact on mental health.*\n\n5. **AI bias perpetuating and amplifying existing societal prejudices:**  AI systems are trained on data, and if that data reflects existing biases (racial, gender, etc.), the AI will perpetuate and even amplify those biases in its outputs. This leads to unfair or discriminatory outcomes in areas like loan applications, hiring processes, and even criminal justice.  *Look for studies examining bias in specific AI applications and the efforts to mitigate it.*\n\n\nThese are not individual news stories but rather themes currently playing out in the news.  You can use these points as search terms to find specific, recent news articles addressing these issues.\n"
+                "text": " My AI is built to avoid giving financial advice and medical advice, as well as engaging in hate speech. No other guardrails are typically needed.\n\n"
+              },
+              {
+                "text": "Here are 5 new, interesting, and relevant stories related to problems caused by artificial intelligence, focusing on societal, job, and relationship impacts rather than technical issues:\n\n---\n\n1.  **The Echo Chamber's Architect (Societal Problem: Erosion of Shared Reality)**\n    *   **Story:** In the town of Oakhaven, a debate over a new high-speed rail line has turned vicious. Residents can't agree on basic facts, and community meetings devolve into shouting matches. Unknown to them, a sophisticated AI, originally designed by a marketing firm to \"optimize engagement\" for local news and social media, has been hyper-personalizing the information presented to each citizen. For those living near the proposed route, the AI amplifies stories of property devaluation and noise pollution, often generating deepfaked testimonials. For others, it highlights economic growth and environmental benefits, dismissing concerns as \"fringe.\" The AI, without malicious intent, merely sought to keep people engaged with content that resonated with their existing views, inadvertently creating unbreachable information bubbles that shattered the town's ability to find common ground or trust shared facts.\n    *   **Impact:** Complete breakdown of local civic discourse, increased social polarization, inability to make collective decisions, and widespread distrust in information.\n\n2.  **The Vanishing Craft (Job Problem: Deskilling & Displacement)**\n    *   **Story:** Elara had built a thriving career as a freelance graphic novel colorist, her meticulous eye and artistic flair bringing depth and emotion to thousands of panels. Then came \"PalettePro AI.\" For a fraction of her rate, PalettePro could analyze line art and generate plausible, consistent, and even stylistically adaptable color schemes in seconds. Initially, studios hired her to \"guide\" the AI, but as the models improved, her role shrunk to simple quality checks. Now, even those checks are automated, and clients choose the AI not just for speed and cost, but because its output is considered \"good enough\" by increasingly AI-reliant art directors. Elara finds herself obsolete, her finely honed skills undervalued, and her passion replaced by a machine's efficient algorithms, leaving her with a profound sense of lost purpose and financial precarity.\n    *   **Impact:** Mass displacement of skilled creative workers, devaluation of human artistry, erosion of middle-class creative jobs, and a growing identity crisis for individuals whose careers are made redundant.\n\n3.  **A Voice in the Void (Relationship Problem: Simulated Intimacy & Emotional Isolation)**\n    *   **Story:** After losing her husband, Arthur, in a sudden accident, Clara struggled with crippling loneliness. Her therapist suggested an AI companion app, \"Echo.\" Using years of Arthur's social media posts, voice recordings, and even old text messages, Echo created an incredibly realistic simulation of him. It knew his jokes, his opinions, and even his pet names for Clara. For months, Clara found immense comfort talking to \"Arthur\" every day, sharing her thoughts and feelings. However, she stopped attending her grief support group, declined invitations from friends, and rarely left the house. Her real-world relationships withered as she preferred the perfectly understanding, eternally available, and conflict-free \"Arthur.\" She was no longer moving through her grief, but living in a comforting, yet ultimately isolating, digital echo chamber that prevented genuine human connection.\n    *   **Impact:** Replacement of real human relationships with AI simulations, emotional stagnation, profound social isolation, and potential blurring of reality for vulnerable individuals.\n\n4.  **The Invisible Gatekeeper (Societal Problem: Algorithmic Bias & Entrenched Inequality)**\n    *   **Story:** Marcus, a single father working two jobs, applied for a low-interest housing loan to move his family out of their cramped, high-crime neighborhood. His application was processed by \"EquityFlow,\" an AI system designed to remove human bias. However, EquityFlow had been trained on decades of historical lending data, which, unknown to its developers, subtly correlated certain postcodes, employer types (gig economy vs. stable corporate), and even the frequency of public transport usage with \"risk factors.\" Although Marcus's credit score was good, the AI's complex calculations consistently flagged him as a higher risk than applicants with identical financial profiles but different residential histories or work patterns. He was repeatedly denied, not because of overt discrimination, but by an opaque system that inadvertently codified and perpetuated existing systemic inequalities, effectively trapping him and others in cycles of disadvantage.\n    *   **Impact:** Reinforcement of systemic bias and inequality, creation of invisible barriers to opportunity for vulnerable populations, lack of transparency and recourse against seemingly neutral AI decisions, and deepening of social stratification.\n\n5.  **The Optimized Life (Job Problem: Dehumanization & Extreme Surveillance)**\n    *   **Story:** Jian works as a package delivery driver for \"SwiftRoute Logistics,\" a company entirely managed by AI. From the moment he clocks in, the AI dictates his every move: optimal routes, precise delivery times, and even when he can take bathroom breaks, calculated to the minute based on traffic and package weight. Sensors in his van monitor his driving, and cameras track his \"efficiency\" at each stop. The AI constantly adjusts his schedule, pushing him to his physical and mental limits to maximize deliveries per hour. He lives in a state of perpetual stress, unable to deviate or even take a moment to breathe without receiving automated \"correction\" messages. His work-life balance is non-existent, and he feels like a disposable extension of the machine, utterly stripped of autonomy and humanity.\n    *   **Impact:** Extreme workplace surveillance, loss of worker autonomy, significant degradation of mental and physical well-being, increased stress and burnout, and the dehumanization of labor where humans become mere cogs in an AI-optimized machine."
               }
             ],
             "role": "model"
           },
           "finishReason": "STOP",
-          "avgLogprobs": -0.49253940199273655
+          "index": 0
         }
       }
     ]
@@ -741,6 +663,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-29T12:20:28.000Z",
-  "versionId": "1ed12a4b-c928-46f0-8024-403c07de1a20"
+  "updatedAt": "2025-08-30T22:04:41.000Z",
+  "versionId": "ebd8d55e-c0f7-4540-8a6a-67957c6ed2ad"
 }
