@@ -1,0 +1,396 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Perplexity Research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write a Post": {
+      "main": [
+        [
+          {
+            "node": "Save Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Post": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Research": {
+      "main": [
+        [
+          {
+            "node": "Write a Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-30T12:34:13.790Z",
+  "id": "Bf1dZKwZKoRpRvu3",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "idea"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        112
+      ],
+      "id": "f3f5caee-10ba-4e3f-8f3a-c3fe6a9728da",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're a professional content creator for LinkedIn, you've gained a massive 1.000.000 audience by writing deeply valuable business posts.\n\nYour job is to help me write my content. I have a LinkedIn blog about marketing.",
+              "role": "system"
+            },
+            {
+              "content": "=Here is the raw idea for my next LinkedIn post: \n{{ $json.idea }}\n\nHere are some interesting facts about this topic that we've found on the web:\n{{ $('Perplexity Research').item.json.choices[0].message.content }}\n\n----\n\nYou have to use all this information to write a LinkedIn post in 3 different formats:\n1. Text only post\n2. Text post + image of the tweet with a bold or interesting short text\n3. Text + image with infographics / charts (in this case you have to describe in detail what should be displayed)\n\nStructure your output as a JSON file:\n{text\": text, \"infographic\": text, \"tweet\": text}\n\nRule - Write in the style and structing similar to this post:\n\nText of the post: I used to be depressed, broke, and anxious.\n\nNow, I only work 4 hours per day and travel the world. \n\n10 habits that transformed my life:\n\n1. Daily Deep Work\n\nDedicate the first few hours of your day to deep, focused work on your needle-moving work.\n\nNo phone, no social media, no distractions.\n\nThis is when your mind is freshest and most creative.\n\nProtect this time at all costs.\n\n2. The AED System\n\nAutomate, Eliminate, Delegate\n\nRuthlessly apply this system to every task.\n\n• Automate repetitive tasks\n• Eliminate unnecessary ones\n• Delegate what does not require your unique skills\n\nYour time is gold; start acting like it.\n\n3. Quarterly Resets\n\nEvery quarter, take a step back, take a break, and reassess your goals, strategies, and habits.\n\nWhat's working? What's not? Make adjustments.\n\nRegular resets ensure that I stay aligned with my long-term vision and core values.\n\n4. Focus on the 4 W of Work\n\nOptimize the Who, What, Where, and When of your work:\n\n• Who: Surround yourself with high-performers\n• What: Focus on high-impact tasks\n• Where: Create an optimal environment\n• When: Leverage your natural energy\n\nSmall tweaks yield huge gains.\n\n5. Sobriety\n\nEliminating alcohol was a game-changer for my productivity and clarity.\n\nNo hangovers, brain fog, or wasted time.\n\nSobriety allows you to operate at your peak consistently.\n\nYou need to be sober to change your life for the better.\n\n6. No Agenda, No Meeting\n\nWith my team, if a meeting doesn't have a clear agenda and desired outcome, it doesn't happen.\n\nPeriod.\n\nThis simple rule eliminates countless hours of pointless meetings.\n\nWork matters, but most of your meetings don’t.\n\n7. No Meetings in the Morning\n\nMornings are for deep work, not meetings.\n\nProtect your peak creative hours.\n\nSchedule meetings in the afternoon when your energy naturally dips.\n\nSystemize your life.\n\n8. Hell Yes or No\n\nThis is an extension of AED.\n\nIf an opportunity or request isn't a \"Hell Yes!\", it's a no.\n\nRuthlessly guard your time and attention.\n\nSaying no to the mediocre allows you to say yes to the exceptional.\n\n9. Personal Time/Energy Audit\n\nTrack how you spend your time for a week.\n\nCategorize activities as energizing or draining.\n\nThen, systematically eliminate or minimize the draining activities.\n\nThe time audit raises your hourly rate by thousands of dollars.\n\n10. Daily Exercise\n\nThose who prioritize fitness enjoy a life expectancy up to 7 years longer.\n\nYour quality and duration of life is determined by your fitness habits.\n\nExercise is key to unlocking your full potential.\n\nI don’t care if it sounds corny: health is wealth.\n\n—\n\nEnjoy this? ♻️ Repost it to your network and follow Oleg Melnikov for more.\n\n------\n\nHere goes your output: "
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        448,
+        112
+      ],
+      "id": "393d3d58-9060-42a2-838b-874bf6756e48",
+      "name": "Write a Post"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBwMrwjV4GLonZ5",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://airtable.com/appBwMrwjV4GLonZ5"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblql7EnMlSqIJqBj",
+          "mode": "list",
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://airtable.com/appBwMrwjV4GLonZ5/tblql7EnMlSqIJqBj"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "content": "=raw idea: {{ $('When Executed by Another Workflow').item.json.idea }}",
+            "contentType": "text",
+            "repurpose": "=Text only:\n{{ $('Write a Post').item.json.message.content.text }}\n\n---\n\nText + Infographic:\n{{ $('Write a Post').item.json.message.content.infographic }}\n\n---\n\nText + Tweet:\n{{ $('Write a Post').item.json.message.content.tweet }}",
+            "status": "review",
+            "likesCount": 0,
+            "urn": "={{ Math.floor(1e18 + Math.random() * 9e18).toString() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "urn",
+              "displayName": "urn",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "datePosted",
+              "displayName": "datePosted",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "likesCount",
+              "displayName": "likesCount",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "contentType",
+              "displayName": "contentType",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "text",
+                  "value": "text"
+                },
+                {
+                  "name": "image",
+                  "value": "image"
+                },
+                {
+                  "name": "video",
+                  "value": "video"
+                },
+                {
+                  "name": "document",
+                  "value": "document"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "repurpose",
+              "displayName": "repurpose",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "finalText",
+              "displayName": "finalText",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "review",
+                  "value": "review"
+                },
+                {
+                  "name": "ready",
+                  "value": "ready"
+                },
+                {
+                  "name": "posted",
+                  "value": "posted"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        768,
+        112
+      ],
+      "id": "0fd310f2-8dcb-42dd-9393-2bb1e49c9a5c",
+      "name": "Save Post",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MzJqjbxy1gDx8wGt",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "464443a2-d5aa-4aa3-bd06-60372337a0e2",
+              "name": "content",
+              "value": "=Here are the materials for the post:\n{{ $json.fields.repurpose }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        112
+      ],
+      "id": "adfd2934-580a-4bcb-ac6b-ed226db05fed",
+      "name": "Output"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sonar\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You're a professional content researcher inside the copywriting agency, you know how to search for interesting facts and articles to use in our media.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"We want to write a LinkedIn post about this topic: {{$json.idea}} - Find me 5 interesting, concrete facts/data points that will help us write an amazing post on this topic. Keep your response in less than 700 words.\"\n    }\n  ],\n  \"temperature\": 0.2,\n  \"top_p\": 0.9,\n  \"return_images\": false,\n  \"return_related_questions\": false,\n  \"top_k\": 0,\n  \"stream\": false,\n  \"presence_penalty\": 0,\n  \"frequency_penalty\": 1,\n  \"response_format\": null\n}",
+        "options": {}
+      },
+      "id": "7d2c9b73-97e9-49b3-8fec-8a375a0d36cc",
+      "name": "Perplexity Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        288,
+        112
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "content": "# Posts Writer Tool",
+        "height": 320,
+        "width": 1120
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "c32e186f-7272-4a33-8705-24c4c063ee19",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-30T12:34:13.825Z",
+      "updatedAt": "2025-08-30T12:34:13.825Z",
+      "role": "workflow:owner",
+      "workflowId": "Bf1dZKwZKoRpRvu3",
+      "projectId": "oOBE5XeUJ9gPMiIT"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-30T13:57:24.000Z",
+  "versionId": "d12a1614-9d90-4be1-8979-a920ca11af93"
+}
